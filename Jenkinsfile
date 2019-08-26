@@ -26,5 +26,10 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
+         stage('Publish') {
+            steps {
+                sh 'docker push puneetvashisht/dockerwebdemo:latest'
+            }
+        }
     }
 }
