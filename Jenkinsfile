@@ -27,10 +27,14 @@ pipeline {
             }
         }
          stage('Publish') {
-            script {
-                    def customImage = docker.build("puneetvashisht/dockerwebdemo:latest")
+             steps {
+                echo 'Starting to build docker image'
+
+                script {
+                   def customImage = docker.build("puneetvashisht/dockerwebdemo:latest")
                     customImage.push()
                 }
+            }
         }
     }
 }
