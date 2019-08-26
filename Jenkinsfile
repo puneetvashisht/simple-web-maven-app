@@ -6,6 +6,12 @@ pipeline {
         }
     }
     stages {
+
+        stage('Initialize'){
+            def dockerHome = tool 'mydocker'
+            env.PATH = "${dockerHome}:${env.PATH}"
+        }
+
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
@@ -28,11 +34,14 @@ pipeline {
         }
          stage('Publish') {
              steps {
-                echo 'Starting to build docker image'
+                echo 'Starting to build docker image!!'
 
                 script {
-                   def customImage = docker.build("puneetvashisht/dockerwebdemo:latest")
-                    customImage.push()
+                    // withDockerRegistry([credentialsId: 'puneetvashisht', url: 'docker.io/puneetvashisht']) {
+                        def customImage = docker.build("puneetvashisht/dockerwebdemo:latest")
+                        customImage.push()
+                    // }
+                  
                 }
             }
         }
