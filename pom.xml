@@ -67,10 +67,12 @@
 				<configuration>
 					<!-- replace `callicoder` with your docker id-->
 					<repository>puneetvashisht/dockerwebdemo</repository>
-					<tag>${project.version}</tag>
+					<!-- <tag>${project.version}</tag> -->
+					<tag>latest</tag>
 					<buildArgs>
 						<JAR_FILE>target/${project.build.finalName}.jar</JAR_FILE>
 					</buildArgs>
+					<useMavenSettingsForAuth>true</useMavenSettingsForAuth>
 				</configuration>
 				<executions>
 					<execution>
@@ -78,10 +80,27 @@
 						<phase>install</phase>
 						<goals>
 							<goal>build</goal>
+							<goal>push</goal>
 						</goals>
 					</execution>
+					<!-- <execution>
+                          <id>tag-latest</id>
+                          <goals>
+                            <goal>tag</goal>
+                            <goal>push</goal>
+                          </goals>
+                          <configuration>
+                          <repository>spotify/foobar</repository>
+						    <tag>${project.version}</tag>
+						    <buildArgs>
+						      <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+						    </buildArgs>
+                          </configuration>
+                        </execution> -->
 				</executions>
 			</plugin>
+
+			
 		</plugins>
 	</build>
 
