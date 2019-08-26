@@ -26,10 +26,11 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
-        //  stage('Publish') {
-        //     steps {
-        //         sh 'docker push puneetvashisht/dockerwebdemo:latest'
-        //     }
-        // }
+         stage('Publish') {
+            script {
+                    def customImage = docker.build("puneetvashisht/dockerwebdemo:latest")
+                    customImage.push()
+                }
+        }
     }
 }
