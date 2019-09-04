@@ -7,10 +7,10 @@ pipeline {
     }
     stages {
 
-        stage('Initialize'){
-                def dockerHome = tool 'mydocker'
-                env.PATH = "${dockerHome}:${env.PATH}"
-        }
+        // stage('Initialize'){
+        //         def dockerHome = tool 'mydocker'
+        //         env.PATH = "${dockerHome}:${env.PATH}"
+        // }
 
         stage('Build') {
             steps {
@@ -32,18 +32,18 @@ pipeline {
                 sh './jenkins/scripts/deliver.sh'
             }
         }
-         stage('Publish') {
-             steps {
-                echo 'Starting to build docker image!!'
+        //  stage('Publish') {
+        //      steps {
+        //         echo 'Starting to build docker image!!'
 
-                script {
-                    // withDockerRegistry([credentialsId: 'puneetvashisht', url: 'docker.io/puneetvashisht']) {
-                        def customImage = docker.build("puneetvashisht/dockerwebdemo:latest")
-                        customImage.push()
-                    // }
+        //         script {
+        //             // withDockerRegistry([credentialsId: 'puneetvashisht', url: 'docker.io/puneetvashisht']) {
+        //                 def customImage = docker.build("puneetvashisht/dockerwebdemo:latest")
+        //                 customImage.push()
+        //             // }
                   
-                }
-            }
-        }
+        //         }
+        //     }
+        // }
     }
 }
