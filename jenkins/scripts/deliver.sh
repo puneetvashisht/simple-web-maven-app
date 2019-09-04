@@ -9,7 +9,8 @@ mvn install -Dexpression=project.name
 set +x
 
 set -x
-docker --version
+docker push puneetvashisht/dockerwebdemo
+
 set +x
 
 echo 'The following complex command extracts the value of the <name/> element'
