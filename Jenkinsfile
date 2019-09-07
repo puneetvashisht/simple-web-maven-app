@@ -27,11 +27,11 @@ pipeline {
                 }
             }
         }
-        stage('Deliver') {
-            steps {
-                sh './jenkins/scripts/deliver.sh'
-            }
-        }
+        // stage('Deliver') {
+        //     steps {
+        //         sh './jenkins/scripts/deliver.sh'
+        //     }
+        // }
         //  stage('Publish') {
         //      steps {
         //         echo 'Starting to build docker image!!'
