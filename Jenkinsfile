@@ -10,11 +10,18 @@ pipeline {
         //         env.PATH = "${dockerHome}:${env.PATH}"
         // }
 
-        stage('Build') {
+        stage('MavenCheck') {
             steps {
-                sh 'mvn -B -DskipTests clean install'
+                sh 'mvn --version'
             }
         }
+        stage('DockerCheck') {
+            steps {
+                sh 'docker --version'
+            }
+        }
+
+        
         // stage('Test') {
         //     steps {
         //         sh 'mvn test'
