@@ -5,26 +5,22 @@ pipeline {
     }
     stages {
 
-        stage('Initialize'){
-            steps{
-                def dockerHome = tool 'Docker'
-                env.PATH = "${dockerHome}/bin:${env.PATH}"
-            }        
-        }
-
-        // stage('Initialize'){
-        //         def dockerHome = tool 'mydocker'
-        //         env.PATH = "${dockerHome}:${env.PATH}"
-        // }
-
-        stage('MavenCheck') {
+        stage('FirstStage') {
             steps {
-                sh 'mvn --version'
+                // sh 'docker --version'
+                echo 'Executing First Stage'
             }
         }
-        stage('DockerCheck') {
+
+        stage('CreateDockerImage') {
             steps {
-                sh 'docker --version'
+                sh 'mvn install -DskipTests'
+            }
+        }
+        stage('DeployDockerImage') {
+            steps {
+                // sh 'docker --version'
+                echo 'Starting to deploy docker image!!'
             }
         }
 
